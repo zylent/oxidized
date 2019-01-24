@@ -85,6 +85,7 @@ module Oxidized
         end
         ch.request_pty (@pty_options) do |_ch, success_pty|
           raise NoShell, "Can't get PTY" unless success_pty
+
           ch.send_channel_request 'shell' do |_ch, success_shell|
             raise NoShell, "Can't get shell" unless success_shell
           end
@@ -112,6 +113,7 @@ module Oxidized
           sleep 0.1
           match = regexps.find { |regexp| @output.match regexp }
           return match if match
+
           true
         end
       end
@@ -122,7 +124,7 @@ module Oxidized
       ssh_opts = {
         port:         (vars(:ssh_port) || 22).to_i,
         paranoid:     secure,
-        keepalive:    true,
+        keepalive:    vars(:ssh_no_keepalive) ? false : true,
         password:     @node.auth[:password],
         timeout:      Oxidized.config.timeout,
         number_of_password_prompts: 0
@@ -135,6 +137,9 @@ module Oxidized
       if proxy_host = vars(:ssh_proxy)
         proxy_command =  "ssh "
         proxy_command += "-o StrictHostKeyChecking=no " unless secure
+        if proxy_port = vars(:ssh_proxy_port)
+          proxy_command += "-p #{proxy_port} "
+        end
         proxy_command += "#{proxy_host} -W %h:%p"
         proxy = Net::SSH::Proxy::Command.new(proxy_command)
         ssh_opts[:proxy] = proxy
@@ -143,6 +148,8 @@ module Oxidized
       ssh_opts[:keys]       = [vars(:ssh_keys)].flatten if vars(:ssh_keys)
       ssh_opts[:kex]        = vars(:ssh_kex).split(/,\s*/) if vars(:ssh_kex)
       ssh_opts[:encryption] = vars(:ssh_encryption).split(/,\s*/) if vars(:ssh_encryption)
+      ssh_opts[:host_key]   = vars(:ssh_host_key).split(/,\s*/) if vars(:ssh_host_key)
+      ssh_opts[:hmac]       = vars(:ssh_hmac).split(/,\s*/) if vars(:ssh_hmac)
 
       if Oxidized.config.input.debug?
         ssh_opts[:logger]  = Oxidized.logger

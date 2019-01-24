@@ -6,6 +6,8 @@
   * [ACOS](/lib/oxidized/model/acos.rb)
 * Accedian Performance Elements (NIDs)
   * [AEN](/lib/oxidized/model/aen.rb)
+* Adtran
+  * [Total Access (AOS)](/lib/oxidized/model/adtran.rb)
 * Alcatel-Lucent
   * [AOS](/lib/oxidized/model/aos.rb)
   * [AOS7](/lib/oxidized/model/aos7.rb)
@@ -67,6 +69,8 @@
   * [Groove](/lib/oxidized/model/coriantgroove.rb)
 * ComNet
   * [ComNet Microsemi Switch](/lib/oxidized/model/comnetms.rb)
+* Comtrol
+  * [RocketLinx](/lib/oxidized/model/comtrol.rb)
 * Cumulus
   * [Linux](/lib/oxidized/model/cumulus.rb)
 * DataCom
@@ -76,6 +80,7 @@
 * DELL
   * [PowerConnect](/lib/oxidized/model/powerconnect.rb)
   * [AOSW](/lib/oxidized/model/aosw.rb)
+  * [DellX](/lib/oxidized/model/dellx.rb)
 * D-Link
   * [D-Link](/lib/oxidized/model/dlink.rb)
 * ECI Telecom
@@ -93,6 +98,8 @@
   * [TMOS](/lib/oxidized/model/tmos.rb)
 * Fiberstore
   * [S3800](/lib/oxidized/model/gcombnps.rb)
+* Firebrick
+  * [FBxxxx](/lib/oxidized/model/firebrick.rb)
 * Force10
   * [DNOS](/lib/oxidized/model/dnos.rb)
   * [FTOS](/lib/oxidized/model/ftos.rb)
@@ -115,6 +122,7 @@
   * [MSA](/lib/oxidized/model/hpemsa.rb)
 * Huawei
   * [VRP](/lib/oxidized/model/vrp.rb)
+  * [SmartAX series](/lib/oxidized/model/smartax.rb)
 * Juniper
   * [JunOS](/lib/oxidized/model/junos.rb)
   * [ScreenOS (Netscreen)](/lib/oxidized/model/screenos.rb)
